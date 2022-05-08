@@ -136,6 +136,17 @@ $result = mysqli_query($db, $sql1);
         background-position: 0% 50%;
     }
 }
+     #carouselExampleIndicators{
+        width:800px;
+        height: 600px;
+        margin-left:350px; 
+     }
+     .carousel .carousel-indicators li {
+        background-color: red;
+      }
+     .carousel .carousel-indicators li.active {
+        background-color: blue;
+      }
     </style>
   </head>
   <body>
@@ -288,19 +299,6 @@ $result = mysqli_query($db, $sql1);
       <div class="text">
         <center><h1>Start Learning with Upadana </h1></center>
       </div>
-      <!-- <div class="buttondiv">
-        <form class="form-inline my-2 my-lg-0">
-          <input
-            class="form-control mr-sm-2"
-            type="search"
-            id='search'
-            placeholder="Search more courses"
-            aria-label="Search"
-            onblur="searchcourses()"
-            required
-          />
-        </form>
-      </div> -->
     </div>
     <br /><br />
     <h1 style="margin-left: 28px">Explore Top Courses</h1>
@@ -333,10 +331,39 @@ $result = mysqli_query($db, $sql1);
         echo '<center><a href="allcourses.php"><p>View More</p></a></center>';
         echo '</div>';
     } else {
-        echo "0 results";
+        echo "<center><h2>No published Courses</h2></center>";
     }    
     ?>
+    <br><br>
+      <h2 id ="carouselheader" style="margin-left:40px;color:blue;">Latest Blog Posts</h2><br>  
+    <div id="carouselExampleIndicators" class="carousel" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active" style="color:red;"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1" style="color:red;"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2" style="color:red;"></li>
+      </ol>
+      <div class="carousel-inner" style="margin: auto;">
+        <div class="carousel-item active">
+          <img class="d-block w-100" src="./images/Bhavana.jpg" width="750px" height="550px" alt="First slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="./images/c_image.png" width="750px" height="550px" alt="Second slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="./images/breaking_bad_animation.jpg" width="750px" height="550px" alt="Third slide">
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" style="color:yellow;">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" style="color:yellow;">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
     <br><br><br>
+
     <div class="matter">
         <img 
            src="./images/person_image.jpg" 
@@ -400,36 +427,21 @@ $result = mysqli_query($db, $sql1);
       integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
       crossorigin="anonymous"
     ></script>
-    <script>
-        // function searchcourses(){
-        //     var courses=[];
-        //     let input = document.getElementById('search').value;
-        //     input=input.toLowerCase();
-        //     input=input.split(' ').join('');
-        //     input='#'+input;
-        //     var jstags = <?php echo json_encode($tags); ?>;
-        //     const entries = Object.entries(jstags);
-        //     for(i=0;i<entries.length;i++){
-        //         var temp1=entries[i][0];
-        //         var temp2=entries[i][1];
-        //         temp2=temp2.split(' ').join('');
-        //         // console.log(typeof temp2);
-        //         if(temp2.indexOf(input)!=-1){
-        //             courses.push(temp1);       
-        //         }                
-        //     }
-        //     // console.log(courses);
+    <script language="JavaScript" type="text/javascript">
+      setInterval(
+        function () {
+          var randomColor = Math.floor(Math.random()*16777215).toString(16);
+          var a = document.getElementById('carouselheader');
+          a.style.color = "#"+randomColor;
+        },1000);
+    </script>
+    <script language="JavaScript" type="text/javascript">
+      $(document).ready(function(){
+        $('.carousel').carousel({
+          interval: 2000
+        })
+      }); 
 
-        //     const e = document.getElementsByName('hello');
-        //     for(i=0;i<e.length;i++){
-        //         if(courses.includes(e[i].id)){
-        //             e[i].style.display="block";
-        //         }
-        //         else{
-        //             e[i].style.display="none";
-        //         }
-        //     }
-        // }
     </script>
   </body>
 </html>
