@@ -147,9 +147,33 @@ $result = mysqli_query($db, $sql1);
      .carousel .carousel-indicators li.active {
         background-color: blue;
       }
+      #myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+
     </style>
   </head>
   <body>
+   <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
     <nav
       class="navbar navbar-expand-lg navbar-dark bg-light"
       style="height: 80px"
@@ -335,24 +359,62 @@ $result = mysqli_query($db, $sql1);
     }    
     ?>
     <br><br>
-      <h2 id ="carouselheader" style="margin-left:40px;color:blue;">Latest Blog Posts</h2><br>  
-    <div id="carouselExampleIndicators" class="carousel" data-ride="carousel">
+    <h2 id ="carouselheader" style="margin-left:40px;color:blue;">Latest Blog Posts</h2><br>  
+    <div id="carouselExampleIndicators" style="background-color:rgb(204, 255, 153);"class="carousel" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active" style="color:red;"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1" style="color:red;"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="2" style="color:red;"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="3" style="color:red;"></li>
       </ol>
       <div class="carousel-inner" style="margin: auto;">
+        <?php
+          $path1 ="../blog/images/"; 
+          $db1 = mysqli_connect("localhost","root","","blog");
+          $sql3 = "select title,image from posts order by created_at";
+          $result2 = mysqli_query($db1,$sql3);
+          if(!$result2){
+            echo mysqli_error($db1);
+          } 
+          else{
+            $i=1;
+            while($row=mysqli_fetch_assoc($result2) and $i<=4){
+              $image = $row['image'];
+              $title = $row['title'];
+              if($i==1){
+                echo "<div class='carousel-item active'>
+                <img class='d-block w-100' src='$path1$image' width='750px' height='550px' alt='Second slide'>
+                <div class='carousel-caption d-none d-md-block'>
+              <h5 style='color:brown;'>$title</h5>
+            </div>
+              </div>"; 
+              } 
+              else{
+                echo "<div class='carousel-item'>
+                <img class='d-block w-100' src='$path1$image' width='750px' height='550px' alt='Second slide'>
+                <div class='carousel-caption d-none d-md-block'>
+              <h5 style='color:brown;'>$title</h5>
+            </div>
+              </div>"; 
+              } 
+              $i++;
+            }
+          }
+        ?>
+        </div>
+      <!-- <div class="carousel-inner" style="margin: auto;">
         <div class="carousel-item active">
           <img class="d-block w-100" src="./images/Bhavana.jpg" width="750px" height="550px" alt="First slide">
-        </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h5>...</h5>
+          </div>
         <div class="carousel-item">
           <img class="d-block w-100" src="./images/c_image.png" width="750px" height="550px" alt="Second slide">
         </div>
         <div class="carousel-item">
           <img class="d-block w-100" src="./images/breaking_bad_animation.jpg" width="750px" height="550px" alt="Third slide">
         </div>
-      </div>
+      </div> -->
       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" style="color:yellow;">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
@@ -434,6 +496,21 @@ $result = mysqli_query($db, $sql1);
           var a = document.getElementById('carouselheader');
           a.style.color = "#"+randomColor;
         },1000);
+    </script>
+    <script>
+      var mybutton = document.getElementById("myBtn");
+      window.onscroll = function() {scrollFunction()};
+      function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          mybutton.style.display = "block";
+        } else {
+          mybutton.style.display = "none";
+        }
+      }
+      function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
     </script>
     <script language="JavaScript" type="text/javascript">
       $(document).ready(function(){
