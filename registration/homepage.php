@@ -325,7 +325,7 @@ $result = mysqli_query($db, $sql1);
       </div>
     </div>
     <br /><br />
-    <h1 style="margin-left: 28px">Explore Top Courses</h1>
+    <h1 id ="abc" style="margin-left: 28px">Explore Top Courses</h1>
     <br />
     <?php 
        $path='../sidenavigationbar/courseimages/';
