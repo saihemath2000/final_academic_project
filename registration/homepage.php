@@ -428,11 +428,11 @@ $result = mysqli_query($db, $sql1);
 
     <div class="matter">
         <img 
-           src="./images/person_image.jpg" 
+           src="./images/myimage.jpeg" 
            alt="image"
            width="400px"
            height="500px"
-           style="transform:skew(-10deg);margin-left:35px;">
+           style="transform:skew(-5deg);margin-left:35px;">
          <div class="matter-text">
             <h2 style="color:yellow;">For Learners:</h2><br>
             <h4 style="margin-left:400px;color:white;">
