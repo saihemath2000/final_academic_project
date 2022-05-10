@@ -17,7 +17,8 @@
 </head>
 
 <body>
-    <?php  
+    <?php 
+        $name = $_SESSION['user']['name']; 
         $mod = $_SESSION['mod_id'];
         $conn = mysqli_connect("localhost", "root", "", "course_info");
         $result = mysqli_query($conn, "select * from module where id=".$mod);

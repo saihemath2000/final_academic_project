@@ -1,4 +1,6 @@
-<?php include('../sidenavigationbar/topdashboard.php'); ?>
+<?php 
+ session_start();
+include('../sidenavigationbar/topdashboard.php'); ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -99,11 +101,14 @@
     <tr>
         <?php
         $con= new mysqli('localhost','root','','course_info');
-        
-       $user = "select * from courseinstructors ";
+        $name = $_SESSION['user']['name'];
+       $user = "select * from courseinstructors where instructor='$name' ";
        $result=mysqli_query($con,$user);
        $row_count=mysqli_num_rows($result);
      $i=1;
+     if($row_count==0){
+       echo '<center><h3>No courses created</h3></center>';
+     }
     while($row = mysqli_fetch_assoc($result))
     {
     echo "<tr>";

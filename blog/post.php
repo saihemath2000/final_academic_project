@@ -26,7 +26,8 @@ include('db.php');
           return $result;
 
         }
-            $sql = "SELECT * from posts";
+            $name = $_SESSION['user']['name'];
+            $sql = "SELECT * from posts where instructor='$name'";
             $result = mysqli_query($this->db, $sql);
             return $result;
         }
