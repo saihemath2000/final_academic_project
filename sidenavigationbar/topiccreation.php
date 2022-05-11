@@ -26,7 +26,7 @@
       <div class="col-4">
         <a href="modulesdisplay.php?course=<?php echo $coursename ?>" style="text-decoration:none;">Back to module</a>
       </div>
-      <div class="col-8">
+      <div class="col-8" style="margin-left:50px;margin-top:20px;">
         <h2 id="#adrin" style="color:green">Adding Topics</h2>
         <!-- <h2><?php echo $_GET['coursename'] ?></h2>
         <h2><?php echo $_GET['module'] ?></h2> -->
